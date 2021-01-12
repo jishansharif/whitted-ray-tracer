@@ -72,6 +72,6 @@ int main() {
 
    /*
        This operation is repeated for every pizel, we obtain a two dimensional
-       representation of our three dimensional scene. 
+       representation of our three dimensional scene.
    */
 } 

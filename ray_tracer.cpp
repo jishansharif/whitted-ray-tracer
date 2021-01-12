@@ -46,8 +46,35 @@ class newVec
                 z = z * invNor;
             }
             return *this;
-
         }
 
-}
+        /*
+            Since Vectors have a magnitude and a direction, A shape in the scene will be 
+            able to move forward, backwards, up and down. They can also be enlarged and 
+            diminished in size. We deal with those conditions here.
+        */
+        newVec<T> operator * (const T &f) const { return newVec<T>(x * f, y * f, z * f); } 
+        newVec<T> operator * (const newVec<T> &v) const { return newVec<T>(x * v.x, y * v.y, z * v.z); }
+        // Enlarging an object, We take a constant scale and we multiply each cordinate with that scale
+        T dot(const newVec<T> &v) const { return x * v.x + y * v.y + z * v.z; } 
+        newVec<T> operator - (const newVec<T> &v) const { return newVec<T>(x - v.x, y - v.y, z - v.z); } 
+        newVec<T> operator + (const newVec<T> &v) const { return newVec<T>(x + v.x, y + v.y, z + v.z); } 
+        // We now deal with moving an object in the forward direction
+        // We also deal with diminishing an object.
+        newVec<T>& operator += (const newVec<T> &v) { x += v.x, y += v.y, z += v.z; return *this; } 
+        newVec<T>& operator *= (const newVec<T> &v) { x *= v.x, y *= v.y, z *= v.z; return *this; } 
+        newVec<T> operator - () const { return newVec<T>(-x, -y, -z); } 
+        // length2 and length is the implementation of the Pythagoraus theorem
+        // a ** 2 + b ** 2 = c ** 2
+        // Using this theorem we know the length of a segment will be
+        // sqrt (a ** 2 + b ** 2 + c ** 2) 
+        T length2() const { return x * x + y * y + z * z; } 
+        T length() const { return sqrt(length2()); }
+        // We now return the cordinates such that it is easy to understand.
+        friend std::ostream & operator << (std::ostream &os, const newVec<T> &v) 
+        { 
+            os << "[" << v.x << " " << v.y << " " << v.z << "]"; 
+            return os; 
+        } 
+};
 

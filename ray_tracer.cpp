@@ -93,5 +93,34 @@ class Sphere
         // We're going to have to use Snell's equation to determine the angle of reflection
         // and transmission. Hence it is important to declare emissionColor as well as
         // reflection values.
-}
+        Sphere (
+            const newVecf &midPoint,
+            const float &radius,
+            const float &radiusSquared,
+            const newVecf &shapeColor,
+            const newVecf &emissionColor,
+            const float &transparency = 0,
+            const float &reflection = 0,
+        )
+
+        bool intersect(const newVecf &rayOrigin, const Vec3f &rayDirection, float &t0, float &t1) const {
+            /*
+                One of the most important methods for our ray tracher, once we cast a ray into the scene,
+                We need to see whether the ray hits an object or not, this will be computed here.
+            */
+            newVecf contact = midPoint - rayOrigin;
+            float tca = contact.dot(rayDirection);
+            if (tca < 0) {
+                return false;
+            }
+            float d2 = contact.dot(contact) - (tca * tca);
+            if (d2 < 0) {
+                return false;
+            }
+            float thc = sqrt(radiusSquared - d2);
+            t0 = tca - thc;
+            t1 = tca + thc;
+            return true;
+        }
+};
 

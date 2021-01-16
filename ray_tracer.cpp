@@ -130,5 +130,21 @@ float mix(const float &a, const float &b, const float &mix)
 { 
     return b * mix + a * (1 - mix); 
 } 
- 
 
+
+
+int main(int argc, char **argv) 
+{ 
+    srand48(13); 
+    std::vector<Sphere> spheres; 
+    // position, radius, surface color, reflectivity, transparency, emission color
+    spheres.push_back(Sphere(newVecf( 0.0, -10004, -20), 10000, newVecf(0.20, 0.20, 0.20), 0, 0.0)); 
+    spheres.push_back(Sphere(newVecf( 0.0,      0, -20),     4, newVecf(1.00, 0.32, 0.36), 1, 0.5)); 
+    spheres.push_back(Sphere(newVecf( 5.0,     -1, -15),     2, newVecf(0.90, 0.76, 0.46), 1, 0.0)); 
+    spheres.push_back(Sphere(newVecf( 5.0,      0, -25),     3, newVecf(0.65, 0.77, 0.97), 1, 0.0)); 
+    spheres.push_back(Sphere(newVecf(-5.5,      0, -15),     3, newVecf(0.90, 0.90, 0.90), 1, 0.0)); 
+    spheres.push_back(Sphere(newVecf( 0.0,     20, -30),     3, newVecf(0.00, 0.00, 0.00), 0, 0.0, newVecf(3))); 
+    render(spheres); 
+ 
+    return 0; 
+} 

@@ -129,7 +129,13 @@ class Sphere
 float mix(const float &a, const float &b, const float &mix) 
 { 
     return b * mix + a * (1 - mix); 
-} 
+}
+
+void render( const std::vector<Sphere> &spheres){
+    return true;
+    // The main function is responsible to simulate the image, the render, trace methods
+    // are implementations of the simulation.
+}
 
 
 

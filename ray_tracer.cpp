@@ -78,3 +78,20 @@ class newVec
         } 
 };
 
+typedef newVec<float> newVecf;
+
+class Sphere
+{
+    public:
+        // We will now initialize aobjects in scene. A sphere will have a midpoint
+        // Since it's a 3-D shape, we will need the shape's volume.
+        newVecf midPoint;
+        float radius, radiusSquared;
+        newVecf shapeColor, emissionColor;
+        float transparency, reflection;
+
+        // We're going to have to use Snell's equation to determine the angle of reflection
+        // and transmission. Hence it is important to declare emissionColor as well as
+        // reflection values.
+}
+

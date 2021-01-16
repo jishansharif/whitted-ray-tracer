@@ -124,3 +124,11 @@ class Sphere
         }
 };
 
+#define MAX_RAY_DEPTH 5 
+// using MAX_RAY_DEPTH we can ow control the maximum recursion depth
+float mix(const float &a, const float &b, const float &mix) 
+{ 
+    return b * mix + a * (1 - mix); 
+} 
+ 
+
